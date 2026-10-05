@@ -1,5 +1,5 @@
 {
-  "id": "BloodstoneModule",
+  "id": "bloodstone-utility",
   "title": "Bloodstone Utility Module",
   "description": "A utility module for Foundry VTT for the Bloodstone Campaign.",
   "version": "1.0.0",
