@@ -1,0 +1,27 @@
+{
+  "id": "bloodstone_utils",
+  "title": "Bloodstone Utility Module",
+  "description": "A utility module for Foundry VTT for the Bloodstone Campaign.",
+  "version": "1.0.0",
+  "authors": [
+    {
+        "name": "Fae",
+        "url": "https://github.com/BenTheFire/downtime-system"
+    },
+    {
+        "name": "Ad4m",
+        "url": "https://github.com//downtime-system"
+    }
+      
+  ],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "url": "https://github.com/YourUsername/downtime-system",
+  "manifest": "https://raw.githubusercontent.com/YourUsername/downtime-system/main/module.json",
+  "download": "https://github.com/YourUsername/downtime-system/releases/download/v1.0.0/module.zip"
+}
