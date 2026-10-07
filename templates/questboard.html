@@ -1,0 +1,71 @@
+<div style="text-align: center; margin-bottom: 15px; border-bottom: 2px solid #777; padding-bottom: 5px;">
+    <h1 style="font-size: 36px; font-weight: bold; text-transform: uppercase; font-family: 'Signika', sans-serif; margin: 0;">
+        Bloodstone Questboard
+    </h1>
+</div>
+
+{{#if noJournal}}
+    <p style="text-align: center; color: darkred; font-size: 16px;">
+        <b>Warning:</b> No Journal Entry named "Bloodstone Quests" found. <br>
+        GM, please create a Journal Entry with that exact name to use the Questboard.
+    </p>
+{{else}}
+    <div style="display: flex; height: calc(100% - 70px); gap: 15px;">
+        
+        <!-- LEFT PANE: Categories -->
+        <div style="flex: 1; border-right: 2px solid #555; padding-right: 10px; overflow-y: auto;">
+            
+            {{#if canEdit}}
+                <button class="quest-create" style="margin-bottom: 10px;">
+                    <i class="fas fa-plus"></i> Create New Quest
+                </button>
+            {{/if}}
+
+            {{#each categories as |quests catName|}}
+                <h3 style="background: rgba(0,0,0,0.1); padding: 5px; border-radius: 3px;">{{catName}}</h3>
+                <ul style="list-style: none; padding-left: 5px; margin-bottom: 15px;">
+                {{#each quests}}
+                    <li style="margin-bottom: 5px;">
+                        <a class="quest-link" data-id="{{this.id}}" style="cursor: pointer; {{#if this.isActive}}font-weight: bold; color: darkred; text-decoration: underline;{{/if}}">
+                            <i class="fas fa-scroll"></i> {{this.name}}
+                        </a>
+                    </li>
+                {{else}}
+                    <li style="color: gray; font-style: italic;">No quests</li>
+                {{/each}}
+                </ul>
+            {{/each}}
+        </div>
+
+        <!-- RIGHT PANE: Details -->
+        <div style="flex: 2; padding-left: 5px; overflow-y: auto; position: relative;">
+            {{#if activeQuest}}
+                {{#if canEdit}}
+                    <div style="position: absolute; top: 0; right: 0; display: flex; gap: 5px;">
+                        <select class="quest-status" data-id="{{activeQuest.id}}">
+                            <option value="Available" {{#if activeQuest.isAvailable}}selected{{/if}}>Available</option>
+                            <option value="Started" {{#if activeQuest.isStarted}}selected{{/if}}>Started</option>
+                            <option value="Finished" {{#if activeQuest.isFinished}}selected{{/if}}>Finished</option>
+                        </select>
+                        <button class="quest-edit" data-id="{{activeQuest.id}}" title="Edit Quest Text" style="width: auto;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="quest-delete" data-id="{{activeQuest.id}}" title="Delete Quest" style="width: auto; color: darkred;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                {{/if}}
+                
+                <h2 style="margin-right: 120px; border: none;">{{activeQuest.name}}</h2>
+                <hr>
+                <div class="quest-content" style="font-size: 15px;">
+                    {{{activeQuest.content}}}
+                </div>
+            {{else}}
+                <div style="display: flex; height: 100%; align-items: center; justify-content: center; color: gray; font-size: 18px;">
+                    Select a quest from the left to view details.
+                </div>
+            {{/if}}
+        </div>
+    </div>
+{{/if}}
